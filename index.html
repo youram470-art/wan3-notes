@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Text-to-video prompts: what actually controls motion</title>
+<style>body{max-width:720px;margin:48px auto;padding:0 20px;font:17px/1.65 -apple-system,Segoe UI,Roboto,sans-serif;color:#1b1b1b}h1{font-size:1.6em;line-height:1.25}code{background:#f2f2f2;padding:1px 4px;border-radius:3px}</style>
+</head>
+<body>
+<h1>Text-to-video prompts: what actually controls motion</h1>
+<p>Most text-to-video prompts describe a scene. That is the wrong job. A still image generator already knows how to describe a scene; a video model has to be told what moves, how fast, and in which direction, because motion is the only thing separating it from a photo.</p>
+<p>After enough attempts, the prompts that produce usable footage share a shape. Subject and action first, stated physically: "a woman in a red coat walking toward the camera", not "a woman feeling hopeful". Anything you cannot photograph is a note to yourself, not a prompt. Framing second: wide, medium, close, and where the subject sits in frame. Third, one camera move, named. Static, slow push, handheld drift, tilt. Naming two moves is how you get mush, because the model has two problems and solves neither.</p>
+<p>The part people skip is the end condition. If the shot has to land on something — a hand leaving frame, a door closing, a logo settling — say so, or supply an end frame. A model with no destination invents one, and the invented ending is usually the frame you have to cut around.</p>
+<p>Duration is a constraint, not a dial. Six to eight seconds is roughly where motion stays coherent; past that, subjects drift and the last second is the one that gets cut anyway. Two shorter shots that cut together beat one long shot that wanders.</p>
+<p>Finally, generate twice and keep one. The failure mode is random, not systematic, so a second take is the cheapest fix available. Check the first and last frame, not the middle: if both ends are right, the middle almost always cuts.</p>
+<p>None of this is model-specific, but it is easier to run when text-to-video and image-to-video sit in the same workspace, so an end frame can go straight back in as a start frame. That loop is what <a href="https://wan-3.io/">Wan 3.0</a> is built around, and it is free to try with a five-shot test scene before committing to anything longer.</p>
+<p>The uncomfortable summary: prompt writing for video is mostly bookkeeping. The model renders; the person writes down what moves, picks one camera, and refuses to describe feelings.</p>
+</body>
+</html>
